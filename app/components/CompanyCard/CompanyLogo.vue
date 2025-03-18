@@ -27,8 +27,9 @@ const loading = ref(true)
 try {
   const { data, error } = await useFetch('/api/general_data')
   if (data.value) {
-    imgPath.value = data.value.body[0].image
-    companyName.value = data.value.body[0].name
+    const { image, name } = data.value.body[0]
+    imgPath.value = image
+    companyName.value = name
   }
 
   if (error.value) {

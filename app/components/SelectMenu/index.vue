@@ -22,7 +22,7 @@
       placeholder="Все товары и услуги"
       class="h-[104px] w-full"
       @update:modelValue="onSelectItem"
-      @click="onClickListItem(item)"
+      @click="onListItemClick(item)"
     >
       <template #item-label="{ item }">
         <span class="font-inter font-normal text-[15px] leading-5 tracking-0% align-middle text-blackText">
@@ -56,7 +56,7 @@ const onSelectItem = (selectedItem: Record<string, string | number>) => {
   value.value = selectedItem
 }
 
-const onClickListItem = (item: Record<string, string | number>) => {
+const onListItemClick = (item: Record<string, string | number>) => {
   if (!Object.keys(value.value).length || value.value !== item) {
     value.value = item
   } else {

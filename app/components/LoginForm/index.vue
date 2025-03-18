@@ -5,20 +5,11 @@
 
       <UForm :schema="v.safeParser(schema)" :state="state" class="space-y-4" @submit="onSubmit">
         <UFormField label="Логин" name="login" required>
-          <UInput
-            v-model="state.login"
-            placeholder="Ваш логин"
-            class="w-full"
-          />
+          <UInput v-model="state.login" placeholder="Ваш логин" class="w-full" />
         </UFormField>
 
         <UFormField label="Пароль" name="password" required>
-          <UInput
-            v-model="state.password"
-            type="password"
-            placeholder="Ваш пароль"
-            class="w-full"
-          />
+          <UInput v-model="state.password" type="password" placeholder="Ваш пароль" class="w-full" />
         </UFormField>
 
         <UButton
@@ -44,8 +35,12 @@ import Cookies from 'js-cookie'
 import { navigateTo } from 'nuxt/app'
 
 const schema = v.object({
-  login: v.pipe(v.string()),
-  password: v.pipe(v.string(), v.minLength(6, 'Пароль должен содержать минимум 6 символов')),
+  login: v.pipe(v.string(), v.required('Логин обязателен для заполнения')),
+  password: v.pipe(
+    v.string(),
+    v.required('Пароль обязателен для заполнения'),
+    v.minLength(6, 'Пароль должен содержать минимум 6 символов'),
+  ),
 })
 
 type Schema = v.InferOutput<typeof schema>
@@ -61,22 +56,17 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   try {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
-    if (event.data.login === 'admin' && event.data.password === 'secret') {
-      const token = 'fake-token'
+    const token = 'fake-token'
 
-      Cookies.set('token', token, { expires: 7 })
+    Cookies.set('token', token, { expires: 7 })
 
-      toast.add({ title: 'Успех!', description: 'Вы успешно вошли.', color: 'success' })
+    toast.add({ title: 'Успех!', description: 'Вы успешно вошли.', color: 'success' })
 
-      navigateTo('/products')
-    } else {
-      throw new Error('Пользователь не зарегистрирован!')
-    }
+    navigateTo('/products')
   } catch (error) {
     toast.add({ title: 'Ошибка!', description: error.message, color: 'danger' })
   }
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
