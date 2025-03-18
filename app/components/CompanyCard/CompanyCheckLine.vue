@@ -23,8 +23,9 @@ const reviews = ref(0)
 try {
   const { data, error } = await useFetch('/api/rating')
   if (data.value) {
-    rating.value = data.value.body[0].rating
-    reviews.value = data.value.body[0].reviews
+    const { rating, reviews } = data.value.body[0]
+    rating.value = rating.rating
+    reviews.value = reviews.reviews
   }
 
   if (error.value) {
