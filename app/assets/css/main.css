@@ -36,3 +36,11 @@
   vertical-align: middle;
   color: #0f0f0f;
 }
+
+.primary {
+  color: #337566
+}
+
+.warning {
+  color: #BD3223
+}

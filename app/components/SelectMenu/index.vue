@@ -65,7 +65,9 @@ const onClickListItem = (item: Record<string, string | number>) => {
 }
 
 try {
-  isLoading.value = true
+  if (!isLoading.value) {
+    isLoading.value = true
+  }
   await new Promise((resolve) => setTimeout(resolve, 5000))
   const { data, error } = await useFetch('/api/goods_categories')
   if (data.value && data.value.body.length) {
@@ -81,9 +83,7 @@ try {
 }
 
 const containerClasses = computed(() => {
-  return isMobile
-    ? 'w-[360px] h-[104px] mx-auto'
-    : 'w-[438px] mx-auto'
+  return isMobile ? 'w-[360px] h-[104px] mx-auto' : 'w-[438px] mx-auto'
 })
 </script>
 

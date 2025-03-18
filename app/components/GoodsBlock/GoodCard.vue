@@ -21,8 +21,8 @@
         v-if="isProgressing || isHidden"
         class="w-full h-16 flex items-center justify-center font-inter font-normal text-sm text-center align-middle"
       >
-        <div class="text-[#337566]" v-if="isProgressing">Объявление продвигается</div>
-        <div class="text-[#BD3223]" v-else>Объявление скрыто</div>
+        <div class="primary" v-if="isProgressing">Объявление продвигается</div>
+        <div class="warning" v-else>Объявление скрыто</div>
       </div>
       <div v-else class="w-full h-16 flex items-center justify-between">
         <div class="font-inter font-normal text-xs leading-4.5 tracking-normal align-middle not-italic">
