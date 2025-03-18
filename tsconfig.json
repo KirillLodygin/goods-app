@@ -1,12 +1,15 @@
 {
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
+    "types": ["node"],
     "strict": true,
     "noImplicitAny": false,
     "module": "esnext",
     "target": "esnext",
     "lib": ["esnext", "dom"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": false
   },
   "exclude": ["node_modules", ".nuxt"]
 }

@@ -4,11 +4,11 @@
 
     <UIcon name="i-mdi-dot" class="size-7" />
 
-    <CheckBlock icon-name="i-material-symbols-star" :text="`${rating}`" />
+    <CheckBlock icon-name="i-material-symbols-star" :text="`${companyRating}`" />
 
     <UIcon name="i-mdi-dot" class="size-7" />
 
-    <div>{{ `${reviews} отзывов` }}</div>
+    <div>{{ `${companyReviews} отзывов` }}</div>
   </div>
 </template>
 
@@ -17,15 +17,15 @@ import { ref } from 'vue'
 import { useFetch } from 'nuxt/app'
 import CheckBlock from './CheckBlock.vue'
 
-const rating = ref(0)
-const reviews = ref(0)
+const companyRating = ref(0)
+const companyReviews = ref(0)
 
 try {
   const { data, error } = await useFetch('/api/rating')
   if (data.value) {
     const { rating, reviews } = data.value.body[0]
-    rating.value = rating.rating
-    reviews.value = reviews.reviews
+    companyRating.value = rating
+    companyReviews.value = reviews
   }
 
   if (error.value) {
